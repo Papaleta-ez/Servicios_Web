@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import uam.edu.ni.servicios_web.model.Cliente;
 import uam.edu.ni.servicios_web.service.ClienteService;
 
@@ -30,14 +31,14 @@ public class ClienteController {
 
     @FXML
     public void initialize() {
-        colId.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().id()));
-        colNombre.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().nombre()));
-        colCorreo.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().correo()));
-        colTelefono.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().telefono()));
-        colCiudad.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().ciudad()));
-        colIngreso.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().ingresoAnual()));
-        colPuntaje.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().puntajeCredito()));
-        colDeudor.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().deudor() ? "Sí" : "No"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
+        colIngreso.setCellValueFactory(new PropertyValueFactory<>("ingresoAnual"));
+        colPuntaje.setCellValueFactory(new PropertyValueFactory<>("puntajeCredito"));
+        colDeudor.setCellValueFactory(c -> new ReadOnlyObjectWrapper<>(c.getValue().isDeudor() ? "Sí" : "No"));
     }
 
     @FXML
